@@ -10,7 +10,7 @@ describe('Get Question by Slug Use Case', () => {
     sut = new GetQuestionBySlugUseCase(inMemoryQuestionRepository)
   })
   it('should be able to get a question with slug param', async () => {
-    const newQuestion = makeQuestion()
+    const newQuestion = makeQuestion({ title: 'Example Question' })
 
     await inMemoryQuestionRepository.create(newQuestion)
 
