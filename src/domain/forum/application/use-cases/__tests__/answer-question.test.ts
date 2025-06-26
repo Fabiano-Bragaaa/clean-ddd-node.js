@@ -1,20 +1,22 @@
 import { AnswerQuestionUseCase } from '../answer-question'
-import { AnswersRepository } from '../../repositories/answers-repository'
-import { Answer } from '@/domain/forum/enterprise/entities/answer'
+import { InMemoryAnswerRepository } from 'test/repositories/in-memory-answer-repository'
 
-const fakeAnswersRepository: AnswersRepository = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  create: async (answer: Answer) => {},
-}
+let inMemoryAnswersRepository: InMemoryAnswerRepository
+let sut: AnswerQuestionUseCase
 
-it('create an answer', async () => {
-  const answerQuestion = new AnswerQuestionUseCase(fakeAnswersRepository)
-
-  const answer = await answerQuestion.execute({
-    intructorId: '1',
-    questionId: '1',
-    content: 'some response',
+describe('Create Question Use Case', () => {
+  beforeEach(() => {
+    inMemoryAnswersRepository = new InMemoryAnswerRepository()
+    sut = new AnswerQuestionUseCase(inMemoryAnswersRepository)
   })
 
-  expect(answer.content).toEqual('some response')
+  it('create an answer', async () => {
+    const { answer } = await sut.execute({
+      intructorId: '1',
+      questionId: '1',
+      content: 'some response',
+    })
+
+    expect(answer.id).toBeTruthy()
+  })
 })
