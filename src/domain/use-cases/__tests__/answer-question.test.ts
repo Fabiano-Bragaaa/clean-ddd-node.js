@@ -1,22 +1,19 @@
-  import { AnswerQuestionUseCase } from '../answer-question'
-  import { AnswersRepository } from '../../repositories/answers-repository'
-  import { Answer } from '../../entities/answer'
+import { AnswerQuestionUseCase } from '../answer-question'
+import { AnswersRepository } from '../../repositories/answers-repository'
+import { Answer } from '../../entities/answer'
 
+const fakeAnswersRepository: AnswersRepository = {
+  create: async (answer: Answer) => {},
+}
 
-  const fakeAnswersRepository:AnswersRepository = {
-    create: async (answer: Answer) => {
-      return
-    }
-  }
+it('create an answer', async () => {
+  const answerQuestion = new AnswerQuestionUseCase(fakeAnswersRepository)
 
-  it('create an answer', async () => {
-    const answerQuestion = new AnswerQuestionUseCase(fakeAnswersRepository)
-
-    const answer = await answerQuestion.execute({
-      intructorId: '1',
-      questionId: '1',
-      content: 'some response'
-    })
-
-    expect(answer.content).toEqual('some response')
+  const answer = await answerQuestion.execute({
+    intructorId: '1',
+    questionId: '1',
+    content: 'some response',
   })
+
+  expect(answer.content).toEqual('some response')
+})
