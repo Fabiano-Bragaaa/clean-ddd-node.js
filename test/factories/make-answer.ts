@@ -1,17 +1,14 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import {
-  Question,
-  QuestionProps,
-} from '@/domain/forum/enterprise/entities/question'
+import { Answer, AnswerProps } from '@/domain/forum/enterprise/entities/answer'
 import { faker } from '@faker-js/faker'
 
-export function makeQuestion(
-  override?: Partial<QuestionProps>,
+export function makeAnswer(
+  override?: Partial<AnswerProps>,
   id?: UniqueEntityId,
 ) {
-  const question = Question.create(
+  const answer = Answer.create(
     {
-      title: faker.lorem.sentence(),
+      questionId: new UniqueEntityId(),
       authorId: new UniqueEntityId(),
       content: faker.lorem.text(),
       ...override,
@@ -19,5 +16,5 @@ export function makeQuestion(
     id,
   )
 
-  return question
+  return answer
 }
