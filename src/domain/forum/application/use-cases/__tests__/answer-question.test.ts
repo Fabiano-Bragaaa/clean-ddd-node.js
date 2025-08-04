@@ -11,12 +11,12 @@ describe('Create Question Use Case', () => {
   })
 
   it('create an answer', async () => {
-    const { answer } = await sut.execute({
+    const result = await sut.execute({
       intructorId: '1',
       questionId: '1',
       content: 'some response',
     })
 
-    expect(answer.id).toBeTruthy()
+    expect(result.isRight()).toBeTruthy()
   })
 })
