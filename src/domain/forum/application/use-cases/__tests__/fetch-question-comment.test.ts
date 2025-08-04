@@ -34,7 +34,7 @@ describe('Fetch Questions Comment Use Case', () => {
 
     expect(questionComment).toHaveLength(3)
   })
-  it.skip('should be able to fetch paginated question question comment', async () => {
+  it('should be able to fetch paginated question question comment', async () => {
     for (let i = 1; i <= 22; i++) {
       await inMemoryQuestionCommentRepository.create(
         makeQuestionComment({

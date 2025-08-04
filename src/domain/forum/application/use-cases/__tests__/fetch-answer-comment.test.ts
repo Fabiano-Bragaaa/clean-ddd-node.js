@@ -34,7 +34,7 @@ describe('Fetch Answers Comment Use Case', () => {
 
     expect(answers).toHaveLength(3)
   })
-  it.skip('should be able to fetch paginated answer answer comment', async () => {
+  it('should be able to fetch paginated answer answer comment', async () => {
     for (let i = 1; i <= 22; i++) {
       await inMemoryAnswerCommentRepository.create(
         makeAnswerComment({
